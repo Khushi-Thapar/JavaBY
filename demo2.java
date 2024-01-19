@@ -1,121 +1,269 @@
 import java.util.Scanner;
-class Emp
+class Employee{
+	public int id;
+	public String name;
+	public int age;
+}
+interface company
 {
-	int id;
-	int age;
-	String name;
-	 int sal=20000;
-	String desig; 
-	Emp()
-	{
-		Scanner sc=new Scanner(System.in);
-		System.out.println("Enter id: ");
-		id=sc.nextInt();
-		System.out.println("Enter age: ");
-		age=sc.nextInt();
-		System.out.println("Enter name: ");
-		name=sc.next();
+	public abstract void access();
+	String companyName="BlueYonder";
+}
+final class Developer extends Employee implements company{
+	public double salary = 50000;
+	public String designation = "Developer";
+	void display(){
+		System.out.println("ID : " + id);
+		System.out.println("Name : " + name);
+		System.out.println("Age : " + age);
+		System.out.println("Salary : " + salary);
+		System.out.println("Designation : " + designation);
+		System.out.println("The company name is: " +company.companyName);
+	}
+	void raiseSal(){
+		salary=salary+salary*0.15;
+		System.out.println("New Salary : " + salary);
+	}
+	public void access(){
+		System.out.println("A block access");
 	}
 }
-class Developer extends Emp
-{
-	Developer()
-	{
-		//sal= 50000;
-		desig="Developer";
+
+final class Clerk extends Employee implements company{
+	public double salary = 250000;
+	String designation = "Clerk";
+	void display(){
+		System.out.println("ID : " + id);
+		System.out.println("Name : " + name);
+		System.out.println("Age : " + age);
+		System.out.println("Salary : " + salary);
+		System.out.println("Designation : " + designation);
+		System.out.println("The company name is: " +company.companyName);
 	}
-	void display()
-	{
-		System.out.println("ID: "+id);
-		System.out.println("Age: "+age);
-		System.out.println("Name: "+name);
-		System.out.println("Salary: "+sal);
-		System.out.println("Designation: "+desig);
+	void raiseSal(){
+		salary=salary+salary*0.05;
+		System.out.println("New Salary : " + salary);
 	}
-}
-class Clerk extends Emp
-{
-	Clerk()
-	{
-		sal= 20000;
-		desig="Clerk";
-	}
-	void display()
-	{
-		System.out.println("ID: "+id);
-		System.out.println("Age: "+age);
-		System.out.println("Name: "+name);
-		System.out.println("Salary: "+sal);
-		System.out.println("Designation: "+desig);
+	public void access(){
+		System.out.println("C block access");
 	}
 }
-class Manager extends Emp
-{
-	Manager()
-	{
-		sal= 90000;
-		desig="Manager";
+final class Manager extends Employee implements company{
+	public double salary = 90000;
+	String designation = "Manager";
+	void display(){
+		System.out.println("ID : " + id);
+		System.out.println("Name : " + name);
+		System.out.println("Age : " + age);
+		System.out.println("Salary : " + salary);
+		System.out.println("Designation : " + designation);
+		System.out.println("The company name is: " +company.companyName);
 	}
-	void display()
-	{
-		System.out.println("ID: "+id);
-		System.out.println("Age: "+age);
-		System.out.println("Name: "+name);
-		System.out.println("Salary: "+sal);
-		System.out.println("Designation: "+desig);
+	void raiseSal(){
+		salary=salary+salary*0.20;
+		System.out.println("New Salary : " + salary);
 	}
-}
-class Tester extends Emp
-{
-	Tester()
-	{
-		sal= 40000;
-		desig="Tester";
-	}
-	void display()
-	{
-		System.out.println("ID: "+id);
-		System.out.println("Age: "+age);
-		System.out.println("Name: "+name);
-		System.out.println("Salary: "+sal);
-		System.out.println("Designation: "+desig);
+	public void access(){
+		System.out.println("A and B block access");
 	}
 }
-public class demo2
-{
-	public static void main(String args[])
-	{
-		Scanner sc=new Scanner(System.in);
-		System.out.println("Press 1 for Developer");
-		System.out.println("Press 2 for Clerk");
-		System.out.println("Press 3 for Manager");
-		System.out.println("Press 4 for Tester");
-		System.out.println("Press 5 to exit");
-		int ch;
-		ch= sc.nextInt();
-		if(ch==1)
-		{
-			Developer d= new Developer();
-			d.display();
-		}
-		if(ch==2)
-		{
-			Clerk c= new Clerk();
-			c.display();
-		}
-		if(ch==3)
-		{
-			Manager m= new Manager();
-			m.display();
-		}
-		if(ch==4)
-		{
-			Tester t= new Tester();
-			t.display();
-		}
-		if(ch==5)
-		{
-			System.out.println("Thanks!!!");
-		}
+final class Tester extends Employee implements company{
+	public double salary = 40000;
+	String designation = "Tester";
+	void display(){
+		System.out.println("ID : " + id);
+		System.out.println("Name : " + name);
+		System.out.println("Age : " + age);
+		System.out.println("Salary : " + salary);
+		System.out.println("Designation : " + designation);
+		System.out.println("The company name is: " +company.companyName);
+	}
+	void raiseSal(){
+		salary=salary+salary*0.1;
+		System.out.println("New Salary : " + salary);
+	}
+	public void access(){
+		System.out.println("B block access");
+	}
+}
+
+public class demo2 {
+	public static void main(String args[]){
+		Developer d = new Developer();
+		Tester t = new Tester();
+		Manager m = new Manager();
+		Clerk c = new Clerk();
+
+		int ch1 = 0;
+
+		do{
+			Scanner sc = new Scanner(System.in);
+
+			System.out.println("1) Create");
+			System.out.println("2) Display");
+			System.out.println("3) Raise Salary");
+			System.out.println("4) Access");
+			System.out.println("5) Exit");
+			System.out.println("Enter your choice.....");
+			ch1 = sc.nextInt();
+
+			if(ch1 == 1){ //create
+				int ch2 = 0;
+
+				System.out.println("1) Developer");
+				System.out.println("2) Clerk");
+				System.out.println("3) Tester");
+				System.out.println("4) Manager");
+				System.out.println("5) Exit to main menu");
+
+				System.out.print("Enter your choice : ");
+				ch2 = sc.nextInt();
+
+				if(ch2 == 1){ //developer
+					System.out.println("Id: ");
+					int id = sc.nextInt();
+					System.out.println("Name: ");
+					String name = sc.next();
+					System.out.println("Age: ");
+					int age = sc.nextInt();
+
+					d.name = name;
+					d.id = id;
+					d.age = age;
+				}
+				if(ch2 == 2){ //Clerk
+					System.out.println("Id: ");
+					int id = sc.nextInt();
+					System.out.println("Name: ");
+					String name = sc.next();
+					System.out.println("Age: ");
+					int age = sc.nextInt();
+
+					c.name = name;
+					c.id = id;
+					c.age = age;
+				}
+				if(ch2 == 3){ //Tester
+					System.out.println("Id: ");
+					int id = sc.nextInt();
+					System.out.println("Name: ");
+					String name = sc.next();
+					System.out.println("Age: ");
+					int age = sc.nextInt();
+
+					t.name = name;
+					t.id = id;
+					t.age = age;
+				}
+				if(ch2 == 4){ //Manager
+					System.out.println("Id: ");
+					int id = sc.nextInt();
+					System.out.println("Name: ");
+					String name = sc.next();
+					System.out.println("Age: ");
+					int age = sc.nextInt();
+
+					m.name = name;
+					m.id = id;
+					m.age = age;
+				}
+				if(ch2 == 5){ //exit to main menu
+					continue;
+				}
+			}
+			if(ch1 == 2){ //display
+				int ch2 = 0;
+
+				System.out.println("1) Developer");
+				System.out.println("2) Clerk");
+				System.out.println("3) Tester");
+				System.out.println("4) Manager");
+				System.out.println("Exit to main menu");
+
+				System.out.print("Enter your choice : ");
+				ch2 = sc.nextInt();
+
+				if(ch2 == 1){ //developer
+					if(d.id != 0)
+						d.display();
+					else
+						System.out.println("Developer Not yet registered");
+				}
+				if(ch2 == 2){ //Clerk
+					if(c.id != 0)
+						c.display();
+					else
+						System.out.println("Clerk Not yet registered");
+				}
+				if(ch2 == 3){ //Tester
+					if(t.id != 0)
+						t.display();
+					else
+						System.out.println("Tester Not yet registered");
+				}
+				if(ch2 == 4){ //Manager
+					if(m.id != 0)
+						m.display();
+					else
+						System.out.println("Manager Not yet registered");
+				}
+				if(ch2 == 5) { //exit to main menu
+					continue;
+				}
+			}
+			if(ch1==3){
+				int ch2 = 0;
+				System.out.println("1) Developer");
+				System.out.println("2) Clerk");
+				System.out.println("3) Tester");
+				System.out.println("4) Manager");
+				System.out.println("5) Exit to main menu");
+				System.out.print("Enter your choice : ");
+				ch2 = sc.nextInt();
+				if(ch2==1){
+					d.raiseSal();
+				}
+				if(ch2==2){
+					c.raiseSal();
+				}
+				if(ch2==3){
+					t.raiseSal();
+				}
+				if(ch2==4){
+					m.raiseSal();
+				}
+				if(ch2==5){
+					continue;
+				}
+			}
+			if(ch1==4){
+				int ch2 = 0;
+				System.out.println("1) Developer");
+				System.out.println("2) Clerk");
+				System.out.println("3) Tester");
+				System.out.println("4) Manager");
+				System.out.println("5) Exit to main menu");
+				System.out.print("Enter your choice : ");
+				ch2 = sc.nextInt();
+				if(ch2==1){
+					d.access();
+				}
+				if(ch2==2){
+					c.access();
+				}
+				if(ch2==3){
+					t.access();
+				}
+				if(ch2==4){
+					m.access();
+				}
+				if(ch2==5){
+					continue;
+				}
+			}
+			if(ch1 == 5) {
+				System.exit(0);
+			}
+		}while(ch1 != 5);
 	}
 }
